@@ -2,13 +2,13 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Activity } from "react";
+import { Activity, Suspense } from "react";
 
 import { api } from "@/lib/eden";
 
 import { useUsername } from "@/hooks/use-username";
 
-export default function HomePage() {
+function HomePageContent() {
   const router = useRouter();
   const { username } = useUsername();
 
@@ -70,5 +70,13 @@ export default function HomePage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomePageContent />
+    </Suspense>
   );
 }
