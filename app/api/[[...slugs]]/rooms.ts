@@ -40,9 +40,8 @@ const rooms = new Elysia({ prefix: "/room" })
     async ({ auth }) => {
       const roomId = auth.roomId;
 
-      await Promise.all([db.del(roomId), db.del(`meta:${roomId}`), db.del(`messages:${roomId}`)]);
-
       await realtime.channel(roomId).emit("chat.destroy", { isDestroyed: true });
+      await Promise.all([db.del(roomId), db.del(`meta:${roomId}`), db.del(`messages:${roomId}`)]);
     },
     {
       query: z.object({
