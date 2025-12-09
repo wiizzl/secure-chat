@@ -49,7 +49,7 @@ const MessagesList = (props: MessagesListProps) => {
     <div className="flex-1 overflow-y-auto p-4 space-y-4">
       <Activity mode={messages?.messages.length === 0 ? "visible" : "hidden"}>
         <div className="flex items-center justify-center h-full">
-          <p className="text-zinc-600 text-sm">No messages yet... Start the conversation.</p>
+          <p className="text-zinc-600 text-sm text-center">No messages yet... Start the conversation.</p>
         </div>
       </Activity>
       {messages?.messages.map((message) => (
