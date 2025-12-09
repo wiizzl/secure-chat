@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { api } from "@/lib/eden";
+import { api } from "@/lib/api";
 
 type RoomHeaderProps = {
   roomId: string;

@@ -6,7 +6,7 @@ import { Activity } from "react";
 
 import { ErrorMessage } from "@/components/error-message";
 
-import { api } from "@/lib/eden";
+import { api } from "@/lib/api";
 
 import { useRoomStatus } from "@/hooks/use-room-status";
 import { useUsername } from "@/hooks/use-username";

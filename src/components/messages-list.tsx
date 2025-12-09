@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Activity } from "react";
 
-import { api } from "@/lib/eden";
+import { api } from "@/lib/api";
 
 import { useRealtime } from "@/hooks/use-realtime";
 import { useUsername } from "@/hooks/use-username";

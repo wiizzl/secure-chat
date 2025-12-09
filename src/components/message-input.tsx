@@ -3,7 +3,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 
-import { api } from "@/lib/eden";
+import { api } from "@/lib/api";
 
 import { useUsername } from "@/hooks/use-username";
 
