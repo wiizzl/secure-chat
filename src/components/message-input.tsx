@@ -24,7 +24,7 @@ const MessageInput = (props: MessageInputProps) => {
           sender: username,
           text: text,
         },
-        { query: { roomId: props.roomId } }
+        { query: { roomId: props.roomId } },
       );
     },
   });
@@ -39,7 +39,9 @@ const MessageInput = (props: MessageInputProps) => {
     <div className="p-4 border-t border-zinc-800 bg-zinc-900/30">
       <div className="flex gap-4">
         <div className="flex-1 relative group">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 animate-pulse">&gt;</span>
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 animate-pulse">
+            &gt;
+          </span>
           <input
             type="text"
             ref={inputRef}

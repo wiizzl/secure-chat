@@ -6,7 +6,9 @@ const envSchema = z.object({
 
   NEXT_PUBLIC_APP_URL: z.url(),
 
-  NODE_ENV: z.union([z.literal("development"), z.literal("production")]).default("development"),
+  NODE_ENV: z
+    .union([z.literal("development"), z.literal("production")])
+    .default("development"),
 });
 
 const env = envSchema.parse(process.env);

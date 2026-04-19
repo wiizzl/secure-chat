@@ -29,24 +29,41 @@ const RoomCreate = () => {
   return (
     <div className="w-full max-w-md space-y-8">
       <Activity mode={wasDestroyed ? "visible" : "hidden"}>
-        <ErrorMessage title="Room destroyed" description="All messages were permanently deleted." />
+        <ErrorMessage
+          title="Room destroyed"
+          description="All messages were permanently deleted."
+        />
       </Activity>
       <Activity mode={errorMessage === "room-not-found" ? "visible" : "hidden"}>
-        <ErrorMessage title="Room not found" description="This room may have expired or never existed." />
+        <ErrorMessage
+          title="Room not found"
+          description="This room may have expired or never existed."
+        />
       </Activity>
       <Activity mode={errorMessage === "room-full" ? "visible" : "hidden"}>
-        <ErrorMessage title="Room full" description="This room is at maximum capacity." />
+        <ErrorMessage
+          title="Room full"
+          description="This room is at maximum capacity."
+        />
       </Activity>
       <div className="text-center space-y-2">
-        <h1 className="text-2xl font-bold tracking-tight text-blue-500">&gt;private_chat</h1>
-        <p className="text-zinc-500 text-small">A private self-destructing chat room.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-blue-500">
+          &gt;private_chat
+        </h1>
+        <p className="text-zinc-500 text-small">
+          A private self-destructing chat room.
+        </p>
       </div>
       <div className="border border-zinc-800 bg-zinc-900/50 p-6 backdrop-blur-md">
         <div className="space-y-5">
           <div className="space-y-2">
-            <label className="flex items-center text-zinc-500">Your Identity</label>
+            <label className="flex items-center text-zinc-500">
+              Your Identity
+            </label>
             <div className="flex items-center gap-3">
-              <div className="flex-1 bg-zinc-950 border border-zinc-800 p-3 text-sm text-zinc-400">{username}</div>
+              <div className="flex-1 bg-zinc-950 border border-zinc-800 p-3 text-sm text-zinc-400">
+                {username}
+              </div>
             </div>
           </div>
           <button

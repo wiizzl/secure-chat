@@ -13,7 +13,9 @@ const Providers = (props: ProvidersProps) => {
 
   return (
     <RealtimeProvider>
-      <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        {props.children}
+      </QueryClientProvider>
     </RealtimeProvider>
   );
 };

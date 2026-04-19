@@ -76,7 +76,9 @@ const RoomHeader = (props: RoomHeaderProps) => {
       <div className="w-full md:w-auto">
         <span className="text-xs text-zinc-500 uppercase">Room ID</span>
         <div className="flex items-center justify-between md:justify-start gap-4 md:gap-2">
-          <span className="font-bold text-sm md:text-base text-blue-500 truncate md:max-w-none">{props.roomId}</span>
+          <span className="font-bold text-sm md:text-base text-blue-500 truncate md:max-w-none">
+            {props.roomId}
+          </span>
           <button
             onClick={() => copyLink()}
             className="text-[10px] bg-zinc-800 hover:bg-zinc-700 px-2 py-0.5 rounded text-zinc-400 hover:text-zinc-200 transition-colors"
@@ -89,10 +91,16 @@ const RoomHeader = (props: RoomHeaderProps) => {
         <div className="flex items-center gap-4">
           <div className="h-8 w-px bg-zinc-800 hidden md:block" />
           <div className="flex flex-col">
-            <span className="text-xs text-zinc-500 uppercase">Self-Destruct</span>
+            <span className="text-xs text-zinc-500 uppercase">
+              Self-Destruct
+            </span>
             <span
               className={`text-sm font-bold flex items-center gap-2 ${
-                timeRemaining === null ? "text-zinc-500" : timeRemaining < 60 ? "text-red-500" : "text-amber-500"
+                timeRemaining === null
+                  ? "text-zinc-500"
+                  : timeRemaining < 60
+                    ? "text-red-500"
+                    : "text-amber-500"
               }`}
             >
               {timeRemaining !== null ? formatTime(timeRemaining) : "--:--"}

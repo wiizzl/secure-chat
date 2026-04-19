@@ -13,7 +13,9 @@ export const proxy = async (req: NextRequest) => {
 
   const roomId = roomMatch[1];
 
-  const meta = await db.hgetall<{ connected: string[]; createdAt: number }>(`meta:${roomId}`);
+  const meta = await db.hgetall<{ connected: string[]; createdAt: number }>(
+    `meta:${roomId}`,
+  );
   if (!meta) {
     return NextResponse.redirect(new URL("/?error=room-not-found", req.url));
   }

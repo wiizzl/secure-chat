@@ -1,10 +1,10 @@
 import { Elysia } from "elysia";
 import { z } from "zod";
 
+import { authMiddleware } from "~/api/[[...slugs]]/auth";
+
 import { db } from "@/lib/db";
 import { type Message, realtime } from "@/lib/realtime";
-
-import { authMiddleware } from "./auth";
 
 const messages = new Elysia({ prefix: "/messages" })
   .use(authMiddleware)
@@ -30,7 +30,10 @@ const messages = new Elysia({ prefix: "/messages" })
       await realtime.channel(roomId).emit("chat.message", message);
 
       const remaining = await db.ttl(`meta:${roomId}`);
-      await Promise.all([db.expire(`messages:${roomId}`, remaining), db.expire(roomId, remaining)]);
+      await Promise.all([
+        db.expire(`messages:${roomId}`, remaining),
+        db.expire(roomId, remaining),
+      ]);
     },
     {
       query: z.object({
@@ -40,12 +43,16 @@ const messages = new Elysia({ prefix: "/messages" })
         sender: z.string().max(100),
         text: z.string().max(1000),
       }),
-    }
+    },
   )
   .get(
     "/",
     async ({ auth }) => {
-      const messages = await db.lrange<Message>(`messages:${auth.roomId}`, 0, -1);
+      const messages = await db.lrange<Message>(
+        `messages:${auth.roomId}`,
+        0,
+        -1,
+      );
 
       return {
         messages: messages.map((message) => ({
@@ -56,7 +63,7 @@ const messages = new Elysia({ prefix: "/messages" })
     },
     {
       query: z.object({ roomId: z.string() }),
-    }
+    },
   );
 
 export { messages };

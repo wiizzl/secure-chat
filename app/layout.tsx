@@ -7,13 +7,14 @@ import { Providers } from "@/components/providers";
 
 import { env } from "@/lib/env";
 
-const jetbrainsMono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"] });
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "private_chat",
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
 };
 

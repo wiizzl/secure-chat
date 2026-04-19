@@ -13,7 +13,7 @@ const authMiddleware = new Elysia({ name: "auth" })
   .error({ AuthError })
   .onError(({ code, set }) => {
     if (code === "AuthError") {
-      set.status === 401;
+      set.status = 401;
 
       return { error: "Unauthorized" };
     }

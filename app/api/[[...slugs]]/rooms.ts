@@ -1,12 +1,12 @@
 import { Elysia } from "elysia";
 import { z } from "zod";
 
+import { authMiddleware } from "~/api/[[...slugs]]/auth";
+
 import { db } from "@/lib/db";
-
 import { realtime } from "@/lib/realtime";
-import { authMiddleware } from "./auth";
 
-const ROOM_TTL_SECONDS = 60 * 10; // 10 minutes
+const ROOM_TTL_SECONDS = 60 * 10;
 
 const rooms = new Elysia({ prefix: "/room" })
   .post("/create", async () => {
@@ -33,21 +33,27 @@ const rooms = new Elysia({ prefix: "/room" })
       query: z.object({
         roomId: z.string(),
       }),
-    }
+    },
   )
   .delete(
     "/",
     async ({ auth }) => {
       const roomId = auth.roomId;
 
-      await realtime.channel(roomId).emit("chat.destroy", { isDestroyed: true });
-      await Promise.all([db.del(roomId), db.del(`meta:${roomId}`), db.del(`messages:${roomId}`)]);
+      await realtime
+        .channel(roomId)
+        .emit("chat.destroy", { isDestroyed: true });
+      await Promise.all([
+        db.del(roomId),
+        db.del(`meta:${roomId}`),
+        db.del(`messages:${roomId}`),
+      ]);
     },
     {
       query: z.object({
         roomId: z.string(),
       }),
-    }
+    },
   );
 
 export { rooms };

@@ -49,7 +49,9 @@ const MessagesList = (props: MessagesListProps) => {
     <div className="flex-1 overflow-y-auto p-4 space-y-4">
       <Activity mode={messages?.messages.length === 0 ? "visible" : "hidden"}>
         <div className="flex items-center justify-center h-full">
-          <p className="text-zinc-600 text-sm text-center">No messages yet... Start the conversation.</p>
+          <p className="text-zinc-600 text-sm text-center">
+            No messages yet... Start the conversation.
+          </p>
         </div>
       </Activity>
       {messages?.messages.map((message) => (
@@ -58,7 +60,9 @@ const MessagesList = (props: MessagesListProps) => {
             <div className="flex items-baseline gap-3 mb-1">
               <span
                 className={`text-xs font-bold uppercase ${
-                  message.sender === username ? "text-blue-500" : "text-green-500"
+                  message.sender === username
+                    ? "text-blue-500"
+                    : "text-green-500"
                 }`}
               >
                 {message.sender === username ? "You" : message.sender}
@@ -70,7 +74,9 @@ const MessagesList = (props: MessagesListProps) => {
                 }).format(new Date(message.timestamp))}
               </span>
             </div>
-            <p className="text-sm text-zinc-300 leading-relaxed break-all">{message.text}</p>
+            <p className="text-sm text-zinc-300 leading-relaxed break-all">
+              {message.text}
+            </p>
           </div>
         </div>
       ))}

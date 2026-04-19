@@ -1,15 +1,12 @@
 import { Elysia } from "elysia";
 
-import { messages } from "./messages";
-import { rooms } from "./rooms";
+import { messages } from "~/api/[[...slugs]]/messages";
+import { rooms } from "~/api/[[...slugs]]/rooms";
 
 const app = new Elysia({ prefix: "/api" }).use(rooms).use(messages);
 
-type Api = typeof app;
+export type Api = typeof app;
 
-const GET = app.fetch;
-const POST = app.fetch;
-const DELETE = app.fetch;
-
-export { DELETE, GET, POST };
-export type { Api };
+export const GET = app.fetch;
+export const POST = app.fetch;
+export const DELETE = app.fetch;
