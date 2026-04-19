@@ -16,7 +16,7 @@ const RoomCreate = () => {
   const { username } = useUsername();
   const { wasDestroyed, errorMessage } = useRoomStatus();
 
-  const { mutate: createRoom } = useMutation({
+  const { mutate: createRoom, isPending } = useMutation({
     mutationFn: async () => {
       const res = await api.room.create.post();
 
@@ -67,11 +67,11 @@ const RoomCreate = () => {
             </div>
           </div>
           <button
-            disabled={username === "loading..."}
+            disabled={username === "loading..." || isPending}
             onClick={() => createRoom()}
             className="w-full bg-zinc-100 text-black p-3 text-sm font-bold hover:bg-zinc-50 hover:text-black transition-colors mt-2 disabled:opacity-50 uppercase"
           >
-            Create secure room
+            {isPending ? "Creating..." : "Create secure room"}
           </button>
         </div>
       </div>
